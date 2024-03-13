@@ -2,7 +2,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import torch
 import torchvision.transforms as T
-from settings import DEVICE, SIZE
+from info import DEVICE, SIZE
 
 # Image Transforms
 loader = T.Compose([
