@@ -1,5 +1,3 @@
-import model
-import utils
 import matplotlib.pyplot as plt
 import torch
 import tensorflow as tf
@@ -7,10 +5,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import torchvision.models as models
+import model
+import processImg
 from info import DEVICE, EPOCHS, STYLE_PATH, CONTENT_PATH, OUTPUT_PATH, STYLE_WEIGHT, CONTENT_WEIGHT, LEARNING_RATE
 
-style_image = utils.load_image(STYLE_PATH)
-content_image = utils.load_image(CONTENT_PATH)
+style_image = processImg.load_image(STYLE_PATH)
+content_image = processImg.load_image(CONTENT_PATH)
 print("loaded images") # this is not even running
 
 # pretrained VGG
@@ -62,4 +62,4 @@ for i in range(EPOCHS):
 #clamp any extra values that are too big or small
 target_image.data.clamp_(0, 1)
 
-utils.save_image(target_image, OUTPUT_PATH)
+processImg.save_image(target_image, OUTPUT_PATH)

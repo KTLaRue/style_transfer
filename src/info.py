@@ -8,5 +8,4 @@ STYLE_WEIGHT = 1000000
 CONTENT_WEIGHT = 1
 STYLE_PATH = '../data/starry-night.jpg'
 CONTENT_PATH = '../data/escher.jpg'
-OUTPUT_PATH = '../output/testing1.png'
-
+OUTPUT_PATH = 'output/result_E300_SW100000.png'
