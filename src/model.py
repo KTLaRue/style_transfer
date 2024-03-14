@@ -55,7 +55,7 @@ def style_model(cnn, device, normalization_mean, normalization_std, style_image,
 	norm = Normalization(normalization_mean, normalization_std).to(device)
 	model = nn.Sequential(norm)
 
-	# Keep track of conv layers for naming
+	# Keep track of conv layers
 	i = 0
 	# Loop through vgg layers - this has to be the most ridicouldous method name and im still not sure it is correct
 	for layer in cnn.children():
@@ -69,14 +69,14 @@ def style_model(cnn, device, normalization_mean, normalization_std, style_image,
 			if i <= 5:
 				target_feature = model(style_image).detach() #not really sure about the detach - is it needed?
 				style_loss = StyleLoss(target_feature)
-				model.add_module('style_loss_{}'.format(i), style_loss)
+				model.add_module(f'style_loss_{i}', style_loss)
 				style_losses.append(style_loss)
 
 				# Insert content loss layer after conv 4
 				if i == 4:
 					target = model(content_image).detach()
 					content_loss = ContentLoss(target)
-					model.add_module('content_loss_{}'.format(i), content_loss)
+					model.add_module(f'content_loss_{i}', content_loss)
 					content_losses.append(content_loss)
 
 
